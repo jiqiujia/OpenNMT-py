@@ -121,6 +121,7 @@ class CopyGenerator(nn.Module):
 
         # Probability of copying p(z=1) batch.
         p_copy = torch.sigmoid(self.linear_copy(hidden))
+        # p_copy = torch.ones_like(p_copy)
         # Probability of not copying: p_{word}(w) * (1 - p(z))
         out_prob = torch.mul(prob, 1 - p_copy)
         mul_attn = torch.mul(attn, p_copy)
